@@ -12,6 +12,8 @@
 	      <div style="color:#fff;font-size:18px;margin:10px;"><b>登録完了</b></div>
 	</nav>
 	<h1>登録完了しました。</h1>
-	<jsp:include page="/footer.jsp"/>
+	<!-- <jsp:include page="/footer.jsp"/> -->
+	<hr>
+	<a href="/WeCalendar/top.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
 </body>
 </html>

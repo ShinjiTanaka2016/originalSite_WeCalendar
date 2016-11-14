@@ -32,7 +32,7 @@ public class AddGroupIDCheck extends HttpServlet {
 		WeCalendarDAO wcDAO = new WeCalendarDAO();
 		HttpSession session = request.getSession();
 		LoginUserBeans lUB = (LoginUserBeans) session.getAttribute("lub");
-		String createUser = lUB.getUserId();
+		String groupAdministrator = lUB.getUserId();
 
 		String id = request.getParameter("groupid");
 		String name = request.getParameter("groupname");
@@ -59,8 +59,8 @@ public class AddGroupIDCheck extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			rd.forward(request, response);
 		}else{
-			GroupBeans gb = new GroupBeans(id,name,pass,createUser);
-			session.setAttribute("groupdata", gb);
+			GroupBeans gb = new GroupBeans(id,name,pass,groupAdministrator);
+			request.setAttribute("gb", gb);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/addGroupMember.jsp");
 			rd.forward(request, response);
 		}

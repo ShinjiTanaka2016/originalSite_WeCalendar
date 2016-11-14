@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<LINK rel="stylesheet" type="text/css" href="bootstrap.min.css">
-	<title>WeCalendar</title>
+	<title>WeCalendar Logout</title>
 </head>
 <body>
 
@@ -15,7 +15,8 @@
 	</nav>
 	<h1><% if(Msg != null){ %><%= Msg %><% } %>
 	<br>ログアウトしました</h1>
-	<jsp:include page="/footer.jsp"/>
-
+	<!-- <jsp:include page="/footer.jsp"/> -->
+	<hr>
+	<a href="/WeCalendar/top.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
 </body>
 </html>

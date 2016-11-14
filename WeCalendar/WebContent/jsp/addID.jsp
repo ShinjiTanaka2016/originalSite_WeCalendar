@@ -12,7 +12,7 @@
 
 <body>
 	<nav class="navbar navbar-inverse">
-		      <div style="color:#fff;font-size:18px;margin:10px;"><b>新規ユーザ登録</b></div>
+		<div style="color:#fff;font-size:18px;margin:10px;"><b>新規ユーザ登録</b></div>
 	</nav>
 
 	<div class="container">
@@ -61,6 +61,8 @@
     </form>
 	</div>
 
-	<jsp:include page="/footer.jsp"/>
+	<!-- <jsp:include page="/footer.jsp"/> -->
+	<hr>
+	<a href="/WeCalendar/top.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
 </body>
 </html>

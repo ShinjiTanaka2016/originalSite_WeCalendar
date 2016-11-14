@@ -18,6 +18,5 @@
 	<a href="/WeCalendar/login.jsp" class="btn btn-info" style="margin:20px;">ログイン</a>
 	<a href="/WeCalendar/addID.jsp" class="btn btn-success" style="margin:20px;">新規ID登録</a>
 </center>
-<jsp:include page="/footer.jsp"/>
 </body>
 </html>

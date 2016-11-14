@@ -30,41 +30,59 @@ public class UpdateGroupMenberCheck extends HttpServlet {
 		WeCalendarDAO wcDAO = new WeCalendarDAO();
 		HttpSession session = request.getSession();
 		GroupBeans gB = (GroupBeans) session.getAttribute("groupdata");
-		String id = gB.getGroupId();
-		String errorMsg = "";
+		String groupId = gB.getGroupId();
 
-		String member1 = request.getParameter("member1") + "/";
-		String member2 = request.getParameter("member2") + "/";
-		String member3 = request.getParameter("member3") + "/";
-		String member4 = request.getParameter("member4") + "/";
-		String member5 = request.getParameter("member5") + "/";
-		String member6 = request.getParameter("member6") + "/";
+		String member1 = request.getParameter("member1");
+		String member2 = request.getParameter("member2");
+		String member3 = request.getParameter("member3");
+		String member4 = request.getParameter("member4");
+		String member5 = request.getParameter("member5");
+		String member6 = request.getParameter("member6");
 
-		if(wcDAO.getGroupMember(id,"/"+member1)==true && member1.length() > 0){errorMsg += "ID:" + member1 + "<br>";}
-		if(wcDAO.getGroupMember(id,"/"+member2)==true && member2.length() > 0){errorMsg += "ID:" + member2 + "<br>";}
-		if(wcDAO.getGroupMember(id,"/"+member3)==true && member3.length() > 0){errorMsg += "ID:" + member3 + "<br>";}
-		if(wcDAO.getGroupMember(id,"/"+member4)==true && member4.length() > 0){errorMsg += "ID:" + member4 + "<br>";}
-		if(wcDAO.getGroupMember(id,"/"+member5)==true && member5.length() > 0){errorMsg += "ID:" + member5 + "<br>";}
-		if(wcDAO.getGroupMember(id,"/"+member6)==true && member6.length() > 0){errorMsg += "ID:" + member6 + "<br>";}
+		//	エラーチェック
+		String all = member1 + member2 + member3 + member4 + member5 + member6;
+		String error01 = "";
+		if(all.length() == 0){ error01 = "入力がありません。<br>";}
+		//	ユーザID有無チェック
+		String error02 = "";
+		if(wcDAO.getUserId(member1)==false && member1.length() > 0){error02 += "ID:" + member1 + "<br>";}
+		if(wcDAO.getUserId(member2)==false && member2.length() > 0){error02 += "ID:" + member2 + "<br>";}
+		if(wcDAO.getUserId(member3)==false && member3.length() > 0){error02 += "ID:" + member3 + "<br>";}
+		if(wcDAO.getUserId(member4)==false && member4.length() > 0){error02 += "ID:" + member4 + "<br>";}
+		if(wcDAO.getUserId(member5)==false && member5.length() > 0){error02 += "ID:" + member5 + "<br>";}
+		if(wcDAO.getUserId(member6)==false && member6.length() > 0){error02 += "ID:" + member6 + "<br>";}
+		if(error02.length() > 0){
+			error02 += "<br>上記のユーザIDは存在しません。<br><br>";}
+		//	既存グループメンバチェック
+		String error03="";
+		if(wcDAO.getGroupMember(member1, groupId) && member1.length() > 0){error03 += "ID:" + member1 + "<br>";}
+		if(wcDAO.getGroupMember(member2, groupId) && member1.length() > 0){error03 += "ID:" + member2 + "<br>";}
+		if(wcDAO.getGroupMember(member3, groupId) && member1.length() > 0){error03 += "ID:" + member3 + "<br>";}
+		if(wcDAO.getGroupMember(member4, groupId) && member1.length() > 0){error03 += "ID:" + member4 + "<br>";}
+		if(wcDAO.getGroupMember(member5, groupId) && member1.length() > 0){error03 += "ID:" + member5 + "<br>";}
+		if(wcDAO.getGroupMember(member6, groupId) && member1.length() > 0){error03 += "ID:" + member6 + "<br>";}
+		if(error03.length() > 0){
+			error03 += "<br>上記のユーザIDはすでに登録があります。<br><br>";}
 
+		String errorMsg = error01 + error02 + error03;
 		if(errorMsg.length() > 0){
-			errorMsg += "上記のIDはすでに登録されています。<br><br>"
-					 +  "<a href=\"/WeCalendar/updateGroupMember.jsp\" class=\"btn btn-primary btn-sm\">戻る</a>";
-			request.setAttribute("msg",errorMsg);
+			errorMsg += "<br><a href=\"/WeCalendar/updateGroupMember.jsp\" class=\"btn btn-info\" ><b>戻る</b></a>";
+			request.setAttribute("msg", errorMsg);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			rd.forward(request, response);
-		}else{
-			if(member1.equals("/")){member1 = "";}
-			if(member2.equals("/")){member2 = "";}
-			if(member3.equals("/")){member3 = "";}
-			if(member4.equals("/")){member4 = "";}
-			if(member5.equals("/")){member5 = "";}
-			if(member6.equals("/")){member6 = "";}
 
-			String addMember = member1 + member2 + member3 + member4 + member5 + member6;
-			wcDAO.updateGroupMember(gB.getGroupId(), addMember);
-			gB.setGroupMember(gB.getGroupMember() + addMember);
+		}else{	//	エラー無しの場合登録
+			String Msg = "";
+			if( member1.length() > 0){wcDAO.addGroupMember(member1, groupId);Msg += member1 + "<br>";}
+			if( member2.length() > 0){wcDAO.addGroupMember(member2, groupId);Msg += member2 + "<br>";}
+			if( member3.length() > 0){wcDAO.addGroupMember(member3, groupId);Msg += member3 + "<br>";}
+			if( member4.length() > 0){wcDAO.addGroupMember(member4, groupId);Msg += member4 + "<br>";}
+			if( member5.length() > 0){wcDAO.addGroupMember(member5, groupId);Msg += member5 + "<br>";}
+			if( member6.length() > 0){wcDAO.addGroupMember(member6, groupId);Msg += member6 + "<br>";}
 
+			request.setAttribute("msg", Msg);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/updateGroupMemberCompleteResult.jsp");
+			rd.forward(request, response);
 		}
 	}
 }

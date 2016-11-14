@@ -16,17 +16,18 @@ ScheduleBeans sb = (ScheduleBeans)request.getAttribute("schedule");
 
 	以下の情報で登録しますか？
 	<table>
-	<tr><td></td><td>:<%= sb.getDate() %></td><tr>
-	<tr><td></td><td>:<%= sb.getTime() %></td><tr>
-	<tr><td></td><td>:<%= sb.getAttribute() %></td><tr>
-	<tr><td></td><td>:<%= sb.getPlace() %></td><tr>
-	<tr><td></td><td>:<%= sb.getTitle() %></td><tr>
-	<tr><td></td><td>:<%= sb.getContent() %></td><tr>
+	<tr><td>日付</td><td>:<%= sb.getDate() %></td><tr>
+	<tr><td>時間</td><td>:<%= sb.getStartTime() %>　～　<%= sb.getEndTime() %></td><tr>
+	<tr><td>属性</td><td>:<%= sb.getAttribute() %></td><tr>
+	<tr><td>場所</td><td>:<%= sb.getPlace() %></td><tr>
+	<tr><td>タイトル</td><td>:<%= sb.getTitle() %></td><tr>
+	<tr><td>内容</td><td>:<%= sb.getContent() %></td><tr>
 	</table>
 
 	<form action="/WeCalendar/AddUserScheduleComplete" method="post">
 	<input type="hidden" name="date" value="<%= sb.getDate() %>">
-	<input type="hidden" name="time" value="<%= sb.getTime() %>">
+	<input type="hidden" name="starttime" value="<%= sb.getStartTime() %>">
+	<input type="hidden" name="endtime" value="<%= sb.getEndTime() %>">
 	<input type="hidden" name="attribute" value="<%= sb.getAttribute() %>">
 	<input type="hidden" name="place" value="<%= sb.getPlace() %>">
 	<input type="hidden" name="title" value="<%= sb.getTitle() %>">

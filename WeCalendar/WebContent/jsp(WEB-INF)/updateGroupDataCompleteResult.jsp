@@ -15,8 +15,9 @@
 	<b>グループID：</b><%= groupId %><br>
 	<b>グループ名：</b><%= groupName %><br>
 	<b>グループパス:</b><%= groupPass %><br>
-	<b>管理者：</b><%= groupCreateUser %><br>
+	<b>管理者：</b><%= groupAdministrator %><br>
 
+	<a href="/WeCalendar/myGroupData.jsp" class="btn btn-primary btn-sm">戻る</a>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

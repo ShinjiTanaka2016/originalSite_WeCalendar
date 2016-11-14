@@ -24,9 +24,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-xs-2">時間</label>
+            <label class="control-label col-xs-2">開始時間</label>
             <div class="col-xs-5">
-                <input type="time" name="time" class="form-control">
+                <input type="time" name="starttime" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-2">終了時間</label>
+            <div class="col-xs-5">
+                <input type="time" name="endtime" class="form-control">
             </div>
         </div>
         <div class="form-group">
@@ -68,6 +74,7 @@
     </form>
 	</div>
 
+	<a href="myPage.jsp" class="btn btn-info" style="margin:20px;"><b>戻る</b></a>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

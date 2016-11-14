@@ -15,7 +15,7 @@
 
 
 	<div class="container">
-	削除したいスケジュールIDを入力して下さい。
+	削除したいユーザスケジュールIDを入力して下さい。
     <form action="/WeCalendar/DeleteUserScheduleCheck" method="post" class="form-horizontal">
     	<div class="form-group">
             <label class="control-label col-xs-2">
@@ -34,6 +34,7 @@
     </form>
 	</div>
 
+	<a href="myPage.jsp" class="btn btn-info" style="margin:20px;"><b>戻る</b></a>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

@@ -44,7 +44,7 @@ public class updateUserComplete extends HttpServlet {
 		lUB.setUserPass(newUserPass);
 		session.setAttribute("lub", lUB);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/updateFinalCheckResult.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/updateUserDataCompleteResult.jsp");
 		rd.forward(request, response);
 	}
 

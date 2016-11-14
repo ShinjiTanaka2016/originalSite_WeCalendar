@@ -33,14 +33,15 @@ public class GroupLoginCheck extends HttpServlet {
 		LoginUserBeans lUB = (LoginUserBeans)session.getAttribute("lub");
 		String errorMsg = "";
 
-		String loginUserId = "/" + lUB.getUserId() + "/";
+		//	データ受け取り
+		String loginUserId = lUB.getUserId();
 		String groupLoginId = request.getParameter("grouploginid");
 		String groupLoginPass = request.getParameter("grouploginpass");
 
 		//	エラーチェック
 		if(wcDAO.getGroupId(groupLoginId) == false){
 			errorMsg += "入力したグループIDは存在しません。<br>";
-		}else if(wcDAO.getGroupMember(groupLoginId, loginUserId)==false){
+		}else if(wcDAO.getGroupMember(loginUserId,groupLoginId)==false){
 			errorMsg += "入力したグループのメンバーではありません。";
 		}else if(!wcDAO.getGroupPass(groupLoginId).equals(groupLoginPass)){
 			errorMsg += "パスワードの確認がとれません。<br>";

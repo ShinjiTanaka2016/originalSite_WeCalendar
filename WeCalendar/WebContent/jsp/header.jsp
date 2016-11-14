@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
 
       </button>
-      <a class="navbar-brand" href="/calendarView"><b>カレンダー</b></a>
+      <a class="navbar-brand" href="/WeCalendar/Calendar.jsp"><b>カレンダー</b></a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -29,8 +29,8 @@
       </form>
  ------------------------------------------------------------------------>
       <ul class="nav navbar-nav navbar-right">
-      	<li style="color:#fff;">ID:<%= myId %>　　Name:<%= myName %>　　
-      	Group:<% if( gB.getGroupId()=="0"){%>無し<% }else{ %><%= groupName %><% } %></li>
+      	<li style="color:#fff;">ID:[<%= myId %>]　Name:[<%= myName %>]　
+      	Group:[<% if( gB.getGroupId()=="0"){%>nothing<% }else{ %><%= groupName %><% } %>]</li>
         <li><a href="logOut.jsp"><b>ログアウト</b></a></li>
       </ul>
     </div>

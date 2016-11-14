@@ -31,22 +31,26 @@ public class DeleteUserCheck extends HttpServlet {
 		LoginUserBeans lUB = (LoginUserBeans) session.getAttribute("lub");
 		String errorMsg = "";
 
-		String id = lUB.getUserId();
-		String pass = lUB.getUserPass();
+		String userId = lUB.getUserId();
+		String usePass = lUB.getUserPass();
 
 		String DeletePass = request.getParameter("deletepass");
 
-		if(!DeletePass.equals(pass)){
+		if(!DeletePass.equals(usePass)){
 			errorMsg += "パスワードが違います。<br>";
 			request.setAttribute("errormsg", errorMsg);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/deletePassError.jsp");
 			rd.forward(request, response);
 		}else{
 			WeCalendarDAO wcDAO = new WeCalendarDAO();
-			wcDAO.deleteUserData(id);
+
+			wcDAO.deleteUserSchedule(userId);
+			wcDAO.deleteCreateAllGroupAllMember(userId);
+			wcDAO.deleteCreateGroupData(userId);
+			wcDAO.deleteUserData(userId);
 			session.invalidate();
 
-			String Msg = "IDを削除しました。";
+			String Msg = "ID・スケジュール・管理グループを削除しました。";
 			request.setAttribute("msg",Msg );
 
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/logoutComplete.jsp");

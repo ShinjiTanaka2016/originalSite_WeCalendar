@@ -12,9 +12,10 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"/>
-
-	<% if(!gB.getCreateUser().equals(lUB.getUserName())){ %>
-		メンバ変更の権限がありません。<br>
+	<% if(gB.getGroupId().equals("0")){ %>
+		<b style="color:red;">現在ログイン中のグループはありません。</b><br>
+	<% }else if(!gB.getAdministrator().equals(lUB.getUserId())){ %>
+		<b style="color:red;">メンバ変更の権限がありません。</b><br>
 	<% }else{ %>
 		<div class="container">
 	    <form action="/WeCalendar/UpdateGroupMenberCheck" method="post" class="form-horizontal">
@@ -45,7 +46,7 @@
 	    </form>
 		</div>
 	<% } %>
-
+	<a href="myGroupData.jsp" class="btn btn-info" ><b>戻る</b></a><br>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

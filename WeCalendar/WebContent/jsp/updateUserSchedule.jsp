@@ -33,6 +33,7 @@
     </form>
 	</div>
 
+	<a href="myPage.jsp" class="btn btn-info" style="margin:20px;"><b>戻る</b></a>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

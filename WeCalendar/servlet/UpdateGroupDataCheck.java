@@ -29,13 +29,15 @@ public class UpdateGroupDataCheck extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
+		WeCalendarDAO wcDAO = new WeCalendarDAO();
 		LoginUserBeans lUB = (LoginUserBeans)session.getAttribute("lub");
 		GroupBeans gB = (GroupBeans)session.getAttribute("groupdata");
 		String errorMsg = "";
 
 		String loginUser = lUB.getUserId();
-		String createUser = gB.getCreateUser();
-		String id = gB.getGroupId();
+		String createUser = gB.getAdministrator();
+		String nowId = gB.getGroupId();
+		String nowName = gB.getGroupName();
 		String groupPass = gB.getGroupPass();
 		String inputPass = request.getParameter("grouppass");
 
@@ -51,6 +53,7 @@ public class UpdateGroupDataCheck extends HttpServlet {
 
 		//	エラー確認
 		if(!loginUser.equals(createUser)){errorMsg += "変更する権限がありません。<br>";}
+		if(wcDAO.getGroupId(newId)){errorMsg += "そのIDはすでに使われています。<br>";}
 		if(!groupPass.equals(inputPass)){errorMsg += "パスワードが違います。<br>";}
 		if(!newPass.equals(newPass02)){errorMsg += "パスワードの確認がとれません。<br>";}
 		if(errorMsg.length() > 0){
@@ -61,8 +64,8 @@ public class UpdateGroupDataCheck extends HttpServlet {
 
 		//	エラー無しの場合更新
 		}else{
-			WeCalendarDAO wcDAO = new WeCalendarDAO();
-			wcDAO.updateGroupData(id, newId, newName, newPass);
+			wcDAO.updateGroupData(nowId, newId, newName, newPass);
+			wcDAO.updateGroupMember(nowId, newId);
 
 			//	現グループ情報にセッションを更新
 			gB.setGroupId(newId);

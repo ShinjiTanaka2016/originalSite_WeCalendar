@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<LINK rel="stylesheet" type="text/css" href="bootstrap.min.css">
-	<title>WeCalendar MyPage</title>
+	<title>WeCalendar Logout</title>
 </head>
 <body>
 	<jsp:include page="/header.jsp"/>

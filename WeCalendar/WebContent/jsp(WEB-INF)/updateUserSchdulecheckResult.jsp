@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/sheduleBeansInclude.jsp" %>
+<%@ include file="/scheduleBeansInclude.jsp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,9 +27,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-xs-2">時間</label>
+            <label class="control-label col-xs-2">開始時間</label>
             <div class="col-xs-5">
-                <input type="time" name="time" class="form-control" value="<%= planTime %>">
+                <input type="time" name="starttime" class="form-control" value="<%= planStartTime %>">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-2">終了時間</label>
+            <div class="col-xs-5">
+                <input type="time" name="endtime" class="form-control" value="<%= planEndTime %>">
             </div>
         </div>
         <div class="form-group">

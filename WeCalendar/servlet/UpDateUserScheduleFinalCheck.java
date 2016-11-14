@@ -29,25 +29,34 @@ public class UpDateUserScheduleFinalCheck extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String errorMsg = "";
 
+		String startTime = request.getParameter("starttime");
+		String endTime = request.getParameter("endtime");
+
+
 		HttpSession session = request.getSession();
 		ScheduleBeans sb = (ScheduleBeans) session.getAttribute("plandata");
 
 		if(sb.getDate().length()==0){
-			errorMsg = "日付が入力されていません";
+			errorMsg = "日付が入力されていません<br>";
 		}
 		if(sb.getTitle().length()==0){
-			errorMsg = "タイトルが入力されていません";
+			errorMsg = "タイトルが入力されていません<br>";
+		}
+		if(startTime.length()==0 && endTime.length()>0){
+			errorMsg += "終了時間のみの入力はできません。<br>";
+		}else if(endTime.length() > 0 && startTime.compareTo(endTime)>=0){
+			errorMsg += "開始時間と終了時間の設定が異常です<br>";
 		}
 
 		if(errorMsg.length()>0){
-			request.setAttribute("Msg", errorMsg);
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/schduleError.jsp");
+			errorMsg += "<br><a href=\"/WeCalendar/updateUserSchedule.jsp\" class=\"btn btn-primary btn-sm\">戻る</a><br>";
+			request.setAttribute("msg", errorMsg);
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/error.jsp");
 			rd.forward(request, response);
 		}else{
 			String planId = request.getParameter("id");
 			int id = Integer.parseInt(planId);
 			String date = request.getParameter("date");
-			String time = request.getParameter("time");
 			String attribute = request.getParameter("attribute");
 			String place = request.getParameter("place");
 			String title = request.getParameter("title");
@@ -57,7 +66,7 @@ public class UpDateUserScheduleFinalCheck extends HttpServlet {
 			String createUser = request.getParameter("createuser");
 
 			WeCalendarDAO wcDAO = new WeCalendarDAO();
-			wcDAO.updateScedule(id, date, time, attribute, place, title, content,
+			wcDAO.updateScedule(id, date, startTime, endTime, attribute, place, title, content,
 								authority, createGroup, createUser);
 
 			sb = wcDAO.getPlanData(id);

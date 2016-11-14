@@ -25,10 +25,28 @@ public class AddUserScheduleCheck extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
+		String startTime = request.getParameter("starttime");
+		String endTime = request.getParameter("endtime");
+		String errorMsg ="";
+
+		//	エラーチェック
+		if(startTime.length()==0 && endTime.length()>0){
+			errorMsg += "終了時間のみの入力はできません。<br>";
+		}else if(endTime.length() > 0 && startTime.compareTo(endTime)>=0){
+			errorMsg += "開始時間と終了時間の設定が異常です<br>";
+		}
+		if(errorMsg.length() > 0){
+			errorMsg += "<br><a href=\"/addUserSchedule.jsp\" class=\"btn btn-primary btn-sm\">戻る</a><br>";
+			request.setAttribute("msg", errorMsg);
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/error.jsp");
+			rd.forward(request, response);
+		}
+
 		ScheduleBeans sb = new ScheduleBeans();
 
 		sb.setDate(request.getParameter("date"));
-		sb.setTime(request.getParameter("time"));
+		sb.setStartTime(request.getParameter("starttime"));
+		sb.setEndTime(request.getParameter("endtime"));
 		sb.setAttribute(request.getParameter("attribute"));
 		sb.setPlace(request.getParameter("place"));
 		sb.setTitle(request.getParameter("title"));

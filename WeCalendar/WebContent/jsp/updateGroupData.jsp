@@ -11,11 +11,11 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"/>
-	現在ログイン中のグループは
 	<% if(gB.getGroupId().equals("0")){ %>
-		ありません。<br>
+		<b style="color:red;">現在ログイン中のグループはありません。</b><br>
+	<% }else if(!gB.getAdministrator().equals(lUB.getUserId())){ %>
+		<b style="color:red;">グループ情報変更の権限がありません。</b><br>
 	<% }else{ %>
-		『 ${groupdata.groupName} 』です。<br><br>
 
 		パスワードを入力後、変更したい情報を入力して下さい。<br>
 		<div class="container">
@@ -57,26 +57,6 @@
 	                 name="newgrouppass02" class="form-control" placeholder="Password">
 	            </div>
 	        </div>
-			<!-- ----------------------------------------------
-			<div class="form-group">
-	            <label class="control-label col-xs-2">GroupMenberID</label>
-	            <div class="col-xs-5">
-	                <input type="text" pattern="^[0-9A-Za-z]+$" minlength='8' maxlength='12'
-	                	name="menberid01" class="form-control" placeholder="ID" required>
-	                <input type="text" pattern="^[0-9A-Za-z]+$" minlength='8' maxlength='12'
-	                	name="menberid02" class="form-control" placeholder="ID" required>
-	                <input type="text" pattern="^[0-9A-Za-z]+$" minlength='8' maxlength='12'
-	                	name="menberid03" class="form-control" placeholder="ID" required>
-	                <input type="text" pattern="^[0-9A-Za-z]+$" minlength='8' maxlength='12'
-	                	name="menberid04" class="form-control" placeholder="ID" required>
-	                <input type="text" pattern="^[0-9A-Za-z]+$" minlength='8' maxlength='12'
-	                	name="menberid05" class="form-control" placeholder="ID" required>
-	                <input type="text" pattern="^[0-9A-Za-z]+$" minlength='8' maxlength='12'
-	                	name="menberid06" class="form-control" placeholder="ID" required>
-	            </div>
-	            <div style="color:red;font-size:12px;"><br>(半角英数,8～12文字)</div>
-	        </div>
-	        -------------------------------------------->
 	        <div class="form-group">
 	            <div class="col-xs-offset-2 col-xs-10">
 	                <button type="submit" class="btn btn-info">送信</button>
@@ -85,9 +65,8 @@
 	        </div>
 	    </form>
 		</div>
-
-
 	<% } %>
+	<a href="myGroupData.jsp" class="btn btn-info" style="margin:20px;"><b>戻る</b></a>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

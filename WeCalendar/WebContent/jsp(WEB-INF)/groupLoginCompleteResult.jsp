@@ -12,10 +12,13 @@
 <body>
 	<jsp:include page="/header.jsp"/>
 	以下のグループ情報でログインしました。<br><br>
-	<b>グループID：</b><%= groupId %><br>
-	<b>グループ名：</b><%= groupName %><br>
-	<b>管理者：</b><%= groupCreateUser %><br>
+	<table>
+		<tr><td><b>グループID</b></td>	<td>：<%= groupId %></td></tr>
+		<tr><td><b>グループ名</b></td>	<td>：<%= groupName %></td></tr>
+		<tr><td><b>管理者</b></td>		<td>：<%= groupAdministrator %></td></tr>
+	</table>
 
+	<br><a href="/WeCalendar/myGroup.jsp" class="btn btn-primary btn-sm">戻る</a><br>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

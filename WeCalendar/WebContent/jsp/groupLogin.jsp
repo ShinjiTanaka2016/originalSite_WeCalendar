@@ -39,6 +39,7 @@
     </form>
 	</div>
 
+	<br><a href="./myGroup.jsp" class="btn btn-primary btn-sm">戻る</a><br>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

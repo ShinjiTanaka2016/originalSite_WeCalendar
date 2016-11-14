@@ -12,11 +12,14 @@
 </head>
 <body>
 <jsp:include page="/header.jsp"/>
-	IDを削除するとそのIDでログインできなくなりますがよろしいですか？<br>
 
-	<a href="UserDataDeletePass.jsp" class="btn btn-danger" style="margin:20px;"><b>はい</b></a><br>
+	<div style="color:red;font"><b>
+	IDを削除するとユーザ機能は失われ、ユーザスケジュール、並びに管理グループは全て削除されます。<br>
+	よろしいですか？</b><br>
+	</div>
+	<a href="userDataDeletePass.jsp" class="btn btn-danger" style="margin:20px;"><b>はい</b></a><br>
+
 	<a href="myPage.jsp" class="btn btn-info" style="margin:20px;"><b>戻る</b></a>
-
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

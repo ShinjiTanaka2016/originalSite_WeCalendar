@@ -13,24 +13,22 @@
 <body>
 	<jsp:include page="/header.jsp"/>
 
+	<div class="alert alert-dismissible alert-info">
+	  <strong>MyGroup</strong>　　　now　LoginGroup　is　
+	  【<% if(gB.getGroupName().equals("0")){%>nothing<%}else{%><%= groupName %><% } %>】
+	</div>
+
 	<a href="/WeCalendar/addGroup.jsp" class="btn btn-info"
 		style="margin:20px;width:200px;"><b>グループ作成</b></a>
-	<a href="/WeCalendar/updateGroupMember.jsp" class="btn btn-info"
-		style="margin:20px;width:200px;"><b>グループメンバ追加</b></a>
 	<a href="/WeCalendar/groupLogin.jsp" class="btn btn-info"
 		style="margin:20px;width:200px;"><b>グループログイン・切替</b></a><br>
-	<a href="/WeCalendar/addGroupSchedule.jsp" class="btn btn-info"
-		style="margin:20px;width:200px;"><b>グループスケジュール登録</b></a>
-	<a href="/WeCalendar/updateGroupData.jsp" class="btn btn-success"
-		style="margin:20px;width:200px;"><b>グループ情報変更</b></a><br>
-	<a href="/WeCalendar/updateGroupSchedule.jsp" class="btn btn-success"
-		style="margin:20px;width:200px;"><b>グループスケジュール変更</b></a>
-	<a href="/WeCalendar/sendGroupMail.jsp" class="btn btn-default"
-		style="margin:20px;width:200px;"><b>グループメール配信</b></a><br>
-	<a href="/WeCalendar/deleteGroupSchedule.jsp" class="btn btn-warning"
-		style="margin:20px;width:200px;"><b>グループスケジュール削除</b></a>
-	<a href="/WeCalendar/deleteGroupID.jsp" class="btn btn-danger"
-		style="margin:20px;width:200px;"><b>グループIDの削除</b></a><br>
+	<a href="/WeCalendar/myGroupSchedule.jsp" class="btn btn-success"
+		style="margin:20px;width:200px;"><b>グループスケジュール管理</b></a>
+	<a href="/WeCalendar/myGroupData.jsp" class="btn btn-success"
+		style="margin:20px;width:200px;"><b>グループ情報管理</b></a><br>
+	<a href="/WeCalendar/ToDo.jsp" class="btn btn-warning"
+		style="margin:20px;width:200px;"><b>グループメール配信</b></a><br>		<!-- ToDo -->
+
 
 	<jsp:include page="/footer.jsp"/>
 </body>

@@ -28,16 +28,15 @@ public class AddGroupMenberCheck extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		String errorMsg = "";
-		HttpSession session = request.getSession();
-
-		GroupBeans gb = (GroupBeans)session.getAttribute("groupdata");
 		WeCalendarDAO wcDAO = new WeCalendarDAO();
-		String id = request.getParameter("groupid");
-		String name = request.getParameter("groupname");
-		String pass = request.getParameter("grouppass");
-		String createUser = request.getParameter("createuser");
-		String member = "/" + gb.getCreateUser() + "/";
 
+		//	グループデータ受け取り
+		String groupId = request.getParameter("groupid");
+		String groupName = request.getParameter("groupname");
+		String groupPass = request.getParameter("grouppass");
+		String administrator = request.getParameter("createuser");
+
+		//	メンバーデータ受け取り
 		String member1 = request.getParameter("member1");
 		String member2 = request.getParameter("member2");
 		String member3 = request.getParameter("member3");
@@ -45,15 +44,52 @@ public class AddGroupMenberCheck extends HttpServlet {
 		String member5 = request.getParameter("member5");
 		String member6 = request.getParameter("member6");
 
-		if(member1.length() > 0){member += member1 + "/";}
-		if(member2.length() > 0){member += member2 + "/";}
-		if(member3.length() > 0){member += member3 + "/";}
-		if(member4.length() > 0){member += member4 + "/";}
-		if(member5.length() > 0){member += member5 + "/";}
-		if(member6.length() > 0){member += member6 + "/";}
+		//	ユーザIDチェック
+		if(!member1.equals("") && wcDAO.getUserId(member1)==false)
+			{ errorMsg += member1 +"<br>";member1 = "";}
+		if(!member2.equals("") && wcDAO.getUserId(member2)==false)
+			{ errorMsg += member2 +"<br>";member2 = "";}
+		if(!member3.equals("") && wcDAO.getUserId(member3)==false)
+			{ errorMsg += member3 +"<br>";member3 = "";}
+		if(!member4.equals("") && wcDAO.getUserId(member4)==false)
+			{ errorMsg += member4 +"<br>";member4 = "";}
+		if(!member5.equals("") && wcDAO.getUserId(member5)==false)
+			{ errorMsg += member5 +"<br>";member5 = "";}
+		if(!member6.equals("") && wcDAO.getUserId(member6)==false)
+			{ errorMsg += member6 +"<br>";member6 = "";}
+		if(errorMsg.length()>0){
+			errorMsg += "<br>上記ユーザIDは存在しません。登録をキャンセルしました。<br>";
+		}
 
-		wcDAO.addGroupData(id, name, pass, createUser, member);
-		gb.setGroupMember(member);
+		//	グループテーブル作成
+		wcDAO.addGroupData(groupId, groupName, groupPass, administrator);
+
+		//	所属グループテーブル作成
+		if(wcDAO.getGroupMember(administrator, groupId)==false)
+			wcDAO.addGroupMember(administrator, groupId);
+		if(member1.length()>0 && wcDAO.getGroupMember(member1, groupId)==false)
+			{wcDAO.addGroupMember(member1, groupId);}
+		if(member2.length()>0 && wcDAO.getGroupMember(member2, groupId)==false)
+			{wcDAO.addGroupMember(member2, groupId);}
+		if(member3.length()>0 && wcDAO.getGroupMember(member3, groupId)==false)
+			{wcDAO.addGroupMember(member3, groupId);}
+		if(member4.length()>0 && wcDAO.getGroupMember(member4, groupId)==false)
+			{wcDAO.addGroupMember(member4, groupId);}
+		if(member5.length()>0 && wcDAO.getGroupMember(member5, groupId)==false)
+			{wcDAO.addGroupMember(member5, groupId);}
+		if(member6.length()>0 && wcDAO.getGroupMember(member6, groupId)==false)
+			{wcDAO.addGroupMember(member6, groupId);}
+
+		//	グループログイン処理
+		HttpSession session = request.getSession();
+		GroupBeans gb = new GroupBeans();
+		gb.setGroupId(groupId);
+		gb.setGroupName(groupName);
+		gb.setGroupPass(groupPass);
+		gb.setAdministrator(administrator);
+		session.setAttribute("groupdata", gb);
+
+		request.setAttribute("msg", errorMsg);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/addGroupCompleteResult.jsp");
 		rd.forward(request, response);
 	}

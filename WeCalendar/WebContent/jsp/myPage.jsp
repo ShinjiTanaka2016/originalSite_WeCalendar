@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="userBeansInclude.jsp" %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,13 +9,17 @@
 	<LINK rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<title>WeCalendar MyPage</title>
 </head>
+
 <body>
 	<jsp:include page="/header.jsp"/>
+	<div class="alert alert-dismissible alert-info">
+	  <strong>MyPage</strong>
+	</div>
 
 	<a href="/WeCalendar/addUserSchedule.jsp" class="btn btn-info"
 		style="margin:20px;width:200px;"><b>スケジュール登録</b></a>
-	<a href="/WeCalendar/UserScheduleAllup.jsp" class="btn btn-info"
-		style="margin:20px;width:200px;"><b>スケジュール一覧</b></a><br>
+	<a href="/WeCalendar/userScheduleDisplay.jsp" class="btn btn-info"
+		style="margin:20px;width:200px;"><b>スケジュール一覧</b></a><br>	<!-- ToDo -->
 	<a href="/WeCalendar/updateUserSchedule.jsp" class="btn btn-success"
 		style="margin:20px;width:200px;"><b>スケジュール変更</b></a>
 	<a href="/WeCalendar/userDataUpdate.jsp" class="btn btn-success"

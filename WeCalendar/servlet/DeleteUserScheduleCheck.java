@@ -41,21 +41,23 @@ public class DeleteUserScheduleCheck extends HttpServlet {
 		sb = wcDAO.getPlanData(planId);
 		String createUserId = "";
 
+		//	エラーチェック
 		if(sb == null){
-			errorMsg += "入力したスケジュールID(" +  planId  + ")は存在しません<br><br>"
+			errorMsg += "入力したユーザスケジュールID(" +  planId  + ")は存在しません<br><br>"
 					 + "<a href=\"/WeCalendar/deleteUserSchedule.jsp\" class=\"btn btn-primary btn-sm\">戻る</a>";
 			request.setAttribute("msg",errorMsg);
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/schduleError.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/error.jsp");
 			rd.forward(request, response);
 		}else{
 			createUserId = sb.getCreateUser();
-			if(!loginUserId.equals(createUserId)){
-				errorMsg = "入力したスケジュールID(" +  planId  + ")は存在しません<br><br>"
+			if(!loginUserId.equals(createUserId) || sb.getCreateGroup() != null){
+				errorMsg = "入力したユーザスケジュールID(" +  planId  + ")は存在しません<br><br>"
 						 + "<a href=\"/WeCalendar/deleteUserSchedule.jsp\" class=\"btn btn-primary btn-sm\">戻る</a>";
 				request.setAttribute("msg",errorMsg);
-				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/schduleError.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/error.jsp");
 				rd.forward(request, response);
-			}else{
+
+			}else{	//	エラー無しの場合確認画面へ
 				session.setAttribute("plandata",sb);
 				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/deleteUserSchdulecheckResult.jsp");
 				rd.forward(request, response);

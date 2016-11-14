@@ -13,20 +13,22 @@
 <body>
 <jsp:include page="/header.jsp"/>
 
-
 	<div class="container">
 	パスワードを入力して下さい。<br>
     <form action="DeleteUserCheck" method="post" class="form-horizontal">
         <div class="form-group">
             <label class="control-label col-xs-2">Pass</label>
             <div class="col-xs-5">
-                <input type="password" name="deletepass" class="form-control" placeholder="Password">
+                <input type="password" name="deletepass" pattern="^[0-9A-Za-z]+$"
+                 minlength='8' maxlength='12' class="form-control" placeholder="Password">
             </div>
             <div style="color:red;font-size:12px;"><br>(半角英数,8～30文字)</div>
         </div>
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
-            <div style="color:red">※送信するとIDが削除され、同IDではログインできなくなります</div>
+	            <div style="color:red">
+	            ※送信するとID・スケジュール・管理グループが削除され、同IDではログインできなくなります。
+	            </div>
                 <button type="submit" class="btn btn-info" style="margin:20px;">送信</button>
                 <button type="reset" class="btn btn-warning" style="margin:20px;">リセット</button>
             </div>

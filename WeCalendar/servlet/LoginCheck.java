@@ -56,6 +56,9 @@ public class LoginCheck extends HttpServlet {
 			GroupBeans gB = new GroupBeans();;
 
 			gB.setGroupId("0");
+			gB.setGroupName("0");
+			gB.setGroupPass("0");
+			gB.setAdministrator("0");;
 
 			HttpSession session = request.getSession();
 			session.setAttribute("lub", lUB);

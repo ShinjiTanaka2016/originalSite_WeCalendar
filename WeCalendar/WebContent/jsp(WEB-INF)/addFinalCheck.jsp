@@ -30,7 +30,9 @@
 		<input type="submit" value="登録">
 	</form><br>
 	<a href="/WeCalendar/addID.jsp" class="btn btn-primary btn-sm">戻る</a>
+<!-- <jsp:include page="/footer.jsp"/> -->
+	<hr>
+	<a href="/WeCalendar/top.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
 
-	<jsp:include page="/footer.jsp"/>
 </body>
 </html>
