@@ -9,50 +9,26 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<LINK rel="stylesheet" type="text/css" href="bootstrap.min.css">
-
-
-	<style type="text/css">
-		table {
-		  align: center;
-		  border: solid 1px #000000;
-		}
-		th {
-		  border: solid 2px #000000;
-		  padding:10px;
-		}
-		td {
-		  border: solid 2px #000000;
-		  padding:10px;
-		}
-		.tdlink {
-		  cursor: pointer;
-		  // display: block;
-		}
-		.tdlink:hover {
-		  background-color: #ff0000;
-		}
-		.btn1{
-			border:1px solid #111;
-		}
-		.btn2{
-			border:1px solid #111;
-			margin:20px;
-		}
-		.btn3{
-			border:1px solid #111;
-		}
-		button.btn_day{
-			width:65px;
-			font-size:2.4em;
-			background-color:skyblue;
-			border-radius:5px;
-		}
-	</style>
+	<LINK rel="stylesheet" type="text/css" href="calendarTable.css">
+	<title>WeCalendar</title>
 </head>
+
 <body>
-<jsp:include page="/header.jsp"/>
-<script type="text/javascript"  src="calendarDisplay.js"></script>
+	<jsp:include page="/header.jsp"/>
+	<div class="alert alert-dismissible alert-info">
+		<strong>MyCalendar</strong>
+	</div>
+
+	<!-- フォームはscriptで閉じる  -->
+	<form action="/WeCalendar/ScheduleOfTodayCheck" method="post">
+		閲覧：
+		<select name="authority">
+			<option value="個人">個人</option>
+			<option value="グループ">グループ</option>
+		</select>
+	<script type="text/javascript"  src="calendarDisplay.js"></script>
 <div id="result"></div>
+
 <jsp:include page="/footer.jsp"/>
 </body>
 </html>
