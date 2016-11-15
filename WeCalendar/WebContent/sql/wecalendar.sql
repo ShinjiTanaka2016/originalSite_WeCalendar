@@ -32,18 +32,4 @@ CREATE TABLE plandata(
 	create_user_id VARCHAR(12) NOT NULL,
 	create_date TIMESTAMP NOT NULL
 );
-INSERT INTO userdata VALUES('a','a','a','a');
-INSERT INTO userdata VALUES('user_id','user_name','user_mail','user_pass');
-INSERT INTO groupdata VALUES('group_id','group_name','group_pass','group_membar','group_create_user_id');
-INSERT INTO plandata VALUES('plan_day','plan_time','plan_attribute','plan_place','plan_title','plan_content','view_authority','create_group_id','create_user_id');
-
-
-INSERT INTO plandata(plan_day,plan_time,plan_attribute,plan_place,plan_title,plan_content,view_authority,create_group_id,create_user_id)
- VALUES('1111-11-11','00:00:00','その他','plan_place','plan_title','plan_content','個人','create_group','create_user');
-
-SELECT plan_day,plan_time,plan_title,create_user_id FROM wecalendar.plandata;
-
-INSERT INTO テーブル名 VALUES('カラム①の値','カラム②の値');			/* 追加 */
-DELETE FROM テーブル名 WHERE カラム名=値;								/* 削除 */
-UPDATE テーブル名 SET カラム名①=値,カラム名②=値 WHERE カラム名=値;	/* 更新 */
 
