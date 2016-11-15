@@ -67,7 +67,7 @@ function setCalendar(yyyy, mm) {
 	out += "<a class=\"btn1\" href='#' onclick='setCalendar();return false;'>今月へ戻る</a>";
 	// 前月へ移動リンク
 	out += "<a class=\"btn2\" href='#' yyyy='"+yyyy+"' mm='"+mm+"' onclick='backmm(this);return false;'>前月</a>";
-
+	// 年月日表示
 	out += '<b Style=\"font-size:24px;color:black;\">'+yyyy+'年'+mm+'月</b>';
 	// 翌月へ移動リンク
 	out += "<a class=\"btn2\" href='#' yyyy='"+yyyy+"' mm='"+mm+"' onclick='nextmm(this);return false;'>次月</a>";
@@ -89,32 +89,30 @@ function setCalendar(yyyy, mm) {
 	// 行数を計算する
 	var row = days.length/7;
 	// 行数分だけ回す
+		var f = "<form action=\"/WeCalendar/ScheduleOfTodayCheck\" method=\"post\">";
 		var n = 1;
 		for (var i=1; i<=row; i++) {
     		out += "<tr>";
 			for (var j=7*i-6; j<=7*i; j++) {
+				var toDay = yyyy + "/" + mm + "/" + days[j-1];
 				if(n==1 && days[j-1]>7){
 					out += "<td></td>";
 				}else if((n==5 || n==6) && days[j-1]<8){
 					out += "<td></td>";
 				}else{
-					var toDay = yyyy + "/" + mm + "/" + days[j-1];
 					if((j%7)==1){
-			    		out += "<td>"
-			    			 + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
-			      	   		 + "<button class=\"btn_sunday\" type=\"submit\" value=\"send\">"+ days[j-1]
-			      	   		 + "</form></td>";
+						out += "<td>" + f + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
+							 + "<button class=\"btn_sunday\" type=\"submit\" value=\"send\">"+ days[j-1]
+							 + "</form></td>";
 					}else if((j%7)==0){
-			    		out += "<td>"
-			    			 + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
-			      	   		 + "<button class=\"btn_saturday\" type=\"submit\" value=\"send\">"+ days[j-1]
-			      	   		 + "</form></td>";
+						out += "<td>" + f + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
+					   		 + "<button class=\"btn_saturday\" type=\"submit\" value=\"send\">"+ days[j-1]
+							 + "</form></td>";
 					}else{
-			    		out += "<td>"
-			    			 + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
-			      	   		 + "<button class=\"btn_day\" type=\"submit\" value=\"send\">"+ days[j-1]
-			      	   		 + "</form></td>";
-		      	   	}
+						out += "<td>" + f + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
+							 + "<button class=\"btn_day\" type=\"submit\" value=\"send\">"+ days[j-1]
+							 + "</form></td>";
+					}
 				}
 			}
 			out += "</tr>";

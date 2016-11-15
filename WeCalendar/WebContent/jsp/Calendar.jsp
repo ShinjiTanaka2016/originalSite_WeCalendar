@@ -19,13 +19,6 @@
 		<strong>MyCalendar</strong>
 	</div>
 
-	<!-- フォームはscriptで閉じる  -->
-	<form action="/WeCalendar/ScheduleOfTodayCheck" method="post">
-		閲覧：
-		<select name="authority">
-			<option value="個人">個人</option>
-			<option value="グループ">グループ</option>
-		</select>
 	<script type="text/javascript"  src="calendarDisplay.js"></script>
 <div id="result"></div>
 
