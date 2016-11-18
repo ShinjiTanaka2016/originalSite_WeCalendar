@@ -55,6 +55,7 @@ String member = wcDAO.displayGroupMember(gB.getGroupId());
 	    </form>
 		</div>
 	<% } %>
+
 	<a href="./myGroupData.jsp" class="btn btn-info" ><b>戻る</b></a><br>
 	<jsp:include page="/footer.jsp"/>
 </body>

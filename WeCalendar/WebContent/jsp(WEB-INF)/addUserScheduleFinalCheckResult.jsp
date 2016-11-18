@@ -5,7 +5,6 @@
 <%@ page import="model.WeCalendarDAO" %>
 <%
 WeCalendarDAO wcDAO = new WeCalendarDAO();
-
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,7 +25,7 @@ WeCalendarDAO wcDAO = new WeCalendarDAO();
 	<tr><td>場所</td><td>:<%= planPlace %></td><tr>
 	<tr><td>タイトル</td><td>:<%= planTitle %></td><tr>
 	<tr><td>内容</td><td>:<%= planContent %></td><tr>
-	</table>
+	</table><br>
 
 	<a href="./myPage.jsp" class="btn btn-primary btn-sm">戻る</a>
 	<jsp:include page="/footer.jsp"/>

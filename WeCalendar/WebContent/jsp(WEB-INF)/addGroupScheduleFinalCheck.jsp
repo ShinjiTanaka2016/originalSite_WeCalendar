@@ -17,7 +17,7 @@ ScheduleBeans sb = (ScheduleBeans)request.getAttribute("plandata");
 	以下の情報で登録しますか？<br><br>
 	<table>
 	<tr><td>日付</td><td>:<%= sb.getDate() %></td><tr>
-	<tr><td>時間</td><td>:<%= sb.getStartTime() %>～<%= sb.getEndTime() %></td><tr>
+	<tr><td>時間</td><td>:<%= sb.getStartTime() %>　～　<%= sb.getEndTime() %></td><tr>
 	<tr><td>属性</td><td>:<%= sb.getAttribute() %></td><tr>
 	<tr><td>場所</td><td>:<%= sb.getPlace() %></td><tr>
 	<tr><td>タイトル</td><td>:<%= sb.getTitle() %></td><tr>
@@ -40,7 +40,6 @@ ScheduleBeans sb = (ScheduleBeans)request.getAttribute("plandata");
 	<input type="hidden" name="createuser" value="<%= sb.getCreateUser() %>">
 	<input type="submit" value="スケジュール登録">
 	</form><br>
-
 
 	<a href="./addGroupSchedule.jsp" class="btn btn-primary btn-sm">戻る</a>
 	<jsp:include page="/footer.jsp"/>

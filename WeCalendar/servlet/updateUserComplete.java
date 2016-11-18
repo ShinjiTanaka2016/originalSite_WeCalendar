@@ -47,5 +47,4 @@ public class updateUserComplete extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/updateUserDataCompleteResult.jsp");
 		rd.forward(request, response);
 	}
-
 }

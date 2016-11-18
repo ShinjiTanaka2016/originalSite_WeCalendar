@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginUserBeans;
+import model.ScheduleDAO;
 import model.WeCalendarDAO;
 
 /**
@@ -43,8 +44,9 @@ public class DeleteUserCheck extends HttpServlet {
 			rd.forward(request, response);
 		}else{
 			WeCalendarDAO wcDAO = new WeCalendarDAO();
+			ScheduleDAO sDAO = new ScheduleDAO();
 
-			wcDAO.deleteUserSchedule(userId);
+			sDAO.deleteUserSchedule(userId);
 			wcDAO.deleteCreateAllGroupAllMember(userId);
 			wcDAO.deleteCreateGroupData(userId);
 			wcDAO.deleteUserData(userId);
@@ -56,8 +58,5 @@ public class DeleteUserCheck extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/logoutComplete.jsp");
 			rd.forward(request, response);
 		}
-
-
 	}
-
 }

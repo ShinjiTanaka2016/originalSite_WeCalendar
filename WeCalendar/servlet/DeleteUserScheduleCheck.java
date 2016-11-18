@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.LoginUserBeans;
 import model.ScheduleBeans;
-import model.WeCalendarDAO;
+import model.ScheduleDAO;
 
 /**
  * Servlet implementation class DeleteUserScheduleCheck
@@ -36,9 +36,9 @@ public class DeleteUserScheduleCheck extends HttpServlet {
 		String id = request.getParameter("deleteid");
 		int planId = Integer.parseInt(id);
 
-		WeCalendarDAO wcDAO = new WeCalendarDAO();
+		ScheduleDAO sDAO = new ScheduleDAO();
 		ScheduleBeans sb = new ScheduleBeans();
-		sb = wcDAO.getPlanData(planId);
+		sb = sDAO.getPlanData(planId);
 		String createUserId = "";
 
 		//	エラーチェック
@@ -64,5 +64,4 @@ public class DeleteUserScheduleCheck extends HttpServlet {
 			}
 		}
 	}
-
 }

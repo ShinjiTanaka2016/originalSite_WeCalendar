@@ -14,10 +14,10 @@ import model.ScheduleBeans;
 import model.ScheduleDAO;
 
 /**
- * Servlet implementation class TodayCheck
+ * Servlet implementation class TodayScheduleCheck
  */
-@WebServlet("/UsersTodayCheck")
-public class UsersTodayCheck extends HttpServlet {
+@WebServlet("/TodayScheduleCheck")
+public class TodayScheduleCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,7 +25,6 @@ public class UsersTodayCheck extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		/*
 		 * 受け取ったスケジュールIDを元にデータを取得
 		 * */
@@ -39,7 +38,7 @@ public class UsersTodayCheck extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("plandata", sb);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/usersTodayResult.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/TodayScheduleResult.jsp");
 		rd.forward(request, response);
 	}
 }

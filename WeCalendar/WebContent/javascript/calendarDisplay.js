@@ -12,6 +12,9 @@ function setCalendar(yyyy, mm) {
 		var dd = new Date().getDate();
 		mm = mm -(-1); // mmプラス1で該当月となる
 	}
+	var toYear = yyyy;
+	var toMonth = mm;
+	var toDate = dd;
 
 	var zdate = new Date(yyyy,mm-1,0); // 前月末
 	var tdate = new Date(yyyy,mm,0); // 当月末
@@ -64,13 +67,15 @@ function setCalendar(yyyy, mm) {
 
 	out += "<caption>";
 	// 今月へ戻るリンク
-	out += "<a class=\"btn1\" href='#' onclick='setCalendar();return false;'>今月へ戻る</a>";
+	out += "<a class=\"btn btn-success\" href='#' onclick='setCalendar();return false;'>今月へ戻る</a>　　";
 	// 前月へ移動リンク
-	out += "<a class=\"btn2\" href='#' yyyy='"+yyyy+"' mm='"+mm+"' onclick='backmm(this);return false;'>前月</a>";
+	out += "<a class=\"btn btn-success\" href='#' yyyy='"+yyyy+"' mm='"+mm+"'"
+		 + " onclick='backmm(this);return false;'>前月</a>　";
 	// 年月日表示
-	out += '<b Style=\"font-size:24px;color:black;\">'+yyyy+'年'+mm+'月</b>';
+	out += '<b Style=\"font-size:26px;color:black;\">'+yyyy+'年'+mm+'月</b>';
 	// 翌月へ移動リンク
-	out += "<a class=\"btn2\" href='#' yyyy='"+yyyy+"' mm='"+mm+"' onclick='nextmm(this);return false;'>次月</a>";
+	out += "　<a class=\"btn btn-success\" href='#' yyyy='"+yyyy+"' mm='"+mm+"'"
+		 + "onclick='nextmm(this);return false;'>次月</a>";
 
 	out += "</caption>";
 
@@ -81,7 +86,7 @@ function setCalendar(yyyy, mm) {
   			out += "<th style=\"background:pink;\"><div style=\"color:red;\">" + youbi[i] + "</div></th>";
 		}else if(youbi[i]=="土"){
   			out += "<th style=\"background:skyblue;\"><div style=\"color:blue;\">" + youbi[i] + "</div></th>";
-		}else{out += "<th>" + youbi[i] + "</th>";}
+		}else{out += "<th style=\"background:#d6fcd9;\"><div style=\"color:black;\">" + youbi[i] + "</th>";}
 	}
 	out += "</tr>";
 
@@ -100,19 +105,22 @@ function setCalendar(yyyy, mm) {
 				}else if((n==5 || n==6) && days[j-1]<8){
 					out += "<td></td>";
 				}else{
-					if((j%7)==1){
-						out += "<td>" + f + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
-							 + "<button class=\"btn_sunday\" type=\"submit\" value=\"send\">"+ days[j-1]
-							 + "</form></td>";
+					out += "<td>" + f + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">";
+					//	曜日ごと色分け(土＝青・日＝赤・他＝緑)
+					if((j%7)==0 && yyyy==toYear && mm==toMonth && days[j-1]==toDate){
+						out += "<button class=\"btn_tosaturday\" type=\"submit\" value=\"send\">"+ days[j-1];
 					}else if((j%7)==0){
-						out += "<td>" + f + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
-					   		 + "<button class=\"btn_saturday\" type=\"submit\" value=\"send\">"+ days[j-1]
-							 + "</form></td>";
+						out += "<button class=\"btn_saturday\" type=\"submit\" value=\"send\">"+ days[j-1];
+					}else if((j%7)==1 && yyyy==toYear && mm==toMonth && days[j-1]==toDate){
+						out += "<button class=\"btn_tosunday\" type=\"submit\" value=\"send\">"+ days[j-1];
+					}else if((j%7)==1){
+						out += "<button class=\"btn_sunday\" type=\"submit\" value=\"send\">"+ days[j-1];
+					}else if(yyyy==toYear && mm==toMonth && days[j-1]==toDate){
+						out += "<button class=\"btn_today\" type=\"submit\" value=\"send\">"+ days[j-1];
 					}else{
-						out += "<td>" + f + "<input type=\"hidden\" name=\"date\" value=\"" + toDay + "\">"
-							 + "<button class=\"btn_day\" type=\"submit\" value=\"send\">"+ days[j-1]
-							 + "</form></td>";
+						out += "<button class=\"btn_day\" type=\"submit\" value=\"send\">"+ days[j-1];
 					}
+					out += "</form></td>";
 				}
 			}
 			out += "</tr>";
@@ -125,7 +133,7 @@ function setCalendar(yyyy, mm) {
 }
 
 
-// 前月へ移動（年度をまたぐときはyyyyを調整する必要がある点に留意）
+// 前月へ移動
 function backmm(e) {
 	var yyyy = e.getAttribute('yyyy');
 	var mm = e.getAttribute('mm');

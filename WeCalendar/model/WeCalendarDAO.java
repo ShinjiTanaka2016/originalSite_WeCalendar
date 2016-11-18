@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class WeCalendarDAO {
 	Connection con;
-	static final String DATABASE_URL = "jdbc:mysql://localhost/wecalendar";
+	static final String DATABASE_URL = "jdbc:mysql://localhost/wecalendar";//160.16.204.110//localhost
 	static final String DATABASE_USER = "root";
-	static final String DATABASE_PASWORD = "utsystem2016";
+	static final String DATABASE_PASWORD = "utsystem2016";	//utsystem2016
 
 	public WeCalendarDAO(){
 		connect();
@@ -251,137 +251,6 @@ public class WeCalendarDAO {
 		}
 	}
 
-	//	スケジュール登録///////////////////////////////////////////////////
-	public void setScedule(	String date,String startTime,String endTime,String attribute,
-							String place,String title,String content,String authority,
-							String createGroup,String createUser){
-		connect();
-		try {
-			PreparedStatement statement = con.prepareStatement
-				("INSERT INTO plandata(plan_day,start_time,end_time,plan_attribute,plan_place,plan_title,"
-						+ "plan_content,view_authority,create_group_id,create_user_id)"
-						+ " VALUES(?,?,?,?,?,?,?,?,?,?)");
-			statement.setString(1, date);
-			statement.setString(2, startTime);
-			statement.setString(3, endTime);
-			statement.setString(4, attribute);
-			statement.setString(5, place);
-			statement.setString(6, title);
-			statement.setString(7, content);
-			statement.setString(8, authority);
-			statement.setString(9, createGroup);
-			statement.setString(10, createUser);
-
-			int r = statement.executeUpdate();
-			statement.close();
-		} catch (SQLException e) {
-			System.out.println("スケジュール登録エラー");
-		}
-	}
-
-	//	スケジュール更新///////////////////////////////////////////////////
-	public void updateScedule(int id,String date,String startTime,String endTime,String attribute,String place,
-			String title,String content,String authority,String createGroup,String createUser){
-		connect();
-		try {
-			PreparedStatement statement = con.prepareStatement
-				("UPDATE plandata SET plan_day=?,start_time=?,end_time=?,plan_attribute=?,"
-						+ "plan_place=?,plan_title=?,plan_content=?,view_authority=?,"
-						+ "create_group_id=?,create_user_id=? WHERE plan_id=?");
-			statement.setString(1, date);
-			statement.setString(2, startTime);
-			statement.setString(3, endTime);
-			statement.setString(4, attribute);
-			statement.setString(5, place);
-			statement.setString(6, title);
-			statement.setString(7, content);
-			statement.setString(8, authority);
-			statement.setString(9, createGroup);
-			statement.setString(10, createUser);
-			statement.setInt(11, id);
-			int r = statement.executeUpdate();
-			statement.close();
-		} catch (SQLException e) {
-			System.out.println("スケジュール更新エラー");
-		}
-	}
-
-	//	スケジュール削除///////////////////////////////////////////////////
-	public void deleteSchedule(int id){
-		connect();
-		try {
-			PreparedStatement statement = con.prepareStatement("DELETE FROM plandata WHERE plan_id=?");
-			statement.setInt(1, id);
-			int r = statement.executeUpdate();
-			statement.close();
-		} catch (SQLException e) {
-			System.out.println("スケジュール削除エラー");
-		}
-	}
-
-
-	//	ユーザスケジュール一括削除///////////////////////////////////////////////////
-	public void deleteUserSchedule(String userid){
-		connect();
-		try {
-			PreparedStatement statement = con.prepareStatement
-					("DELETE FROM plandata WHERE create_user_id=? AND view_authority='個人'");
-			statement.setString(1, userid);
-			int r = statement.executeUpdate();
-			statement.close();
-		} catch (SQLException e) {
-			System.out.println("スケジュール削除エラー");
-		}
-	}
-
-
-	//	グループスケジュール一括削除///////////////////////////////////////////////////
-	public void deleteGroupSchedule(String groupid){
-		connect();
-		try {
-			PreparedStatement statement = con.prepareStatement
-					("DELETE FROM plandata WHERE create_group_id=?");
-			statement.setString(1, groupid);
-			int r = statement.executeUpdate();
-			statement.close();
-		} catch (SQLException e) {
-			System.out.println("スケジュール削除エラー");
-		}
-	}
-
-	//	スケジュール情報取得///////////////////////////////////////////////
-	public ScheduleBeans getPlanData(int id){
-		connect();
-		ScheduleBeans sb = new ScheduleBeans();
-		try {
-			PreparedStatement statement = con.prepareStatement
-					("SELECT * FROM plandata WHERE plan_id=? ");
-			statement.setInt(1, id);
-			ResultSet rs = statement.executeQuery();
-			if(rs.next()){
-				sb.setPlanId(rs.getInt("plan_id"));
-				sb.setDate(rs.getString("plan_day"));
-				sb.setStartTime(rs.getString("start_time"));
-				sb.setEndTime(rs.getString("end_time"));
-				sb.setAttribute(rs.getString("plan_attribute"));
-				sb.setPlace(rs.getString("plan_place"));
-				sb.setTitle(rs.getString("plan_title"));
-				sb.setContent(rs.getString("plan_content"));
-				sb.setAuthority(rs.getString("view_authority"));
-				sb.setCreateGroup(rs.getString("create_group_id"));
-				sb.setCreateUser(rs.getString("create_user_id"));
-			}else{
-				return null;
-			}
-			rs.close();
-			statement.close();
-			return sb;
-		} catch (SQLException e) {
-			System.out.println("schedule取得エラー");
-		}
-		return null;
-	}
-
 	//	グループID取得///////////////////////////////////////////////
 	public boolean getGroupId(String id){
 		connect();
@@ -557,23 +426,26 @@ public class WeCalendarDAO {
 		connect();
 		try {
 			PreparedStatement statement = con.prepareStatement
-					("SELECT * FROM affiliationgroup WHERE user_id = ? AND group_id=?");
+					("SELECT * FROM affiliationgroup WHERE user_id=? AND group_id=?");
 			statement.setString(1, userId);
 			statement.setString(2, groupId);
 			ResultSet rs = statement.executeQuery();
 			if(rs.next()){
 				rs.close();
 				statement.close();
+				System.out.println("true");
 				return true;
 			}else{
 				rs.close();
 				statement.close();
+				System.out.println("false");
 				return false;
 			}
 		} catch (SQLException e) {
 			System.out.println("グループメンバ取得エラー");
 		}
-		return false;
+		System.out.println("false");
+		return true;
 	}
 
 	//	グループメンバー表示///////////////////////////////////////////////
@@ -585,7 +457,9 @@ public class WeCalendarDAO {
 					("SELECT * FROM affiliationgroup WHERE group_id=? ORDER BY user_id");
 			statement.setString(1, groupId);
 			ResultSet rs = statement.executeQuery();
-			while(rs.next()){ member += rs.getString("user_id") + "<br>";}
+			while(rs.next()){
+				member += "【 " + rs.getString("user_id") + " 】<br>";
+				}
 			rs.close();
 			statement.close();
 		} catch (SQLException e) {
@@ -670,6 +544,4 @@ public class WeCalendarDAO {
 			System.out.println("作成全グループ全メンバー削除エラー");
 		}
 	}
-
-
 }

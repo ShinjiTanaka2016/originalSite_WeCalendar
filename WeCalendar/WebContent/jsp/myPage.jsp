@@ -19,7 +19,7 @@
 	<a href="/WeCalendar/addUserSchedule.jsp" class="btn btn-info"
 		style="margin:20px;width:200px;"><b>スケジュール登録</b></a>
 	<a href="/WeCalendar/userScheduleDisplay.jsp" class="btn btn-info"
-		style="margin:20px;width:200px;"><b>スケジュール一覧</b></a><br>	<!-- ToDo -->
+		style="margin:20px;width:200px;"><b>スケジュール一覧</b></a><br>
 	<a href="/WeCalendar/updateUserSchedule.jsp" class="btn btn-success"
 		style="margin:20px;width:200px;"><b>スケジュール変更</b></a>
 	<a href="/WeCalendar/userDataUpdate.jsp" class="btn btn-success"

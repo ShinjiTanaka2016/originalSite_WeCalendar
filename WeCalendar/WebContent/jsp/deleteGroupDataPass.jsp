@@ -41,6 +41,7 @@
 	    </form>
 		</div>
 		<% } %>
+
 	<a href="myGroup.jsp" class="btn btn-info" ><b>戻る</b></a><br>
 	<jsp:include page="/footer.jsp"/>
 </body>

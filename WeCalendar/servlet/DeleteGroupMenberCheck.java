@@ -80,7 +80,5 @@ public class DeleteGroupMenberCheck extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/deleteGroupMemberCompleteResult.jsp");
 			rd.forward(request, response);
 		}
-
 	}
-
 }

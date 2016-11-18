@@ -41,5 +41,4 @@ public class GroupsTodayCheck extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/groupsTodayResult.jsp");
 		rd.forward(request, response);
 	}
-
 }

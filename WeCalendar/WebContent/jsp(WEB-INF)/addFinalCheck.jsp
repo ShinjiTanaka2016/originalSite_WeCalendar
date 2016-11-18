@@ -20,19 +20,19 @@
 	<tr><td>UserName</td>	<td>:<%= aub.getUserName() %></td></tr>
 	<tr><td>UserMail</td>	<td>:<%= aub.getUserMail() %></td></tr>
 	<tr><td>UserPass</td>	<td>:<%= aub.getUserPass() %></td></tr>
-	</table>
+	</table><br>
 
 	<form action="/WeCalendar/AddUserComplete" method="post">
 		<input type="hidden" name="userid" value="<%= aub.getUserId() %>">
 		<input type="hidden" name="username" value="<%= aub.getUserName() %>">
 		<input type="hidden" name="usermail" value="<%= aub.getUserMail() %>">
 		<input type="hidden" name="userpass" value="<%= aub.getUserPass() %>">
-		<input type="submit" value="登録">
+		<button type="submit" class="btn btn-info" value="登録">登録</button>
 	</form><br>
 	<a href="/WeCalendar/addID.jsp" class="btn btn-primary btn-sm">戻る</a>
 <!-- <jsp:include page="/footer.jsp"/> -->
 	<hr>
-	<a href="/WeCalendar/top.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
+	<a href="/WeCalendar/index.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
 
 </body>
 </html>

@@ -36,7 +36,5 @@ public class AddUserComplete extends HttpServlet {
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/addFinalCheckResult.jsp");
 		rd.forward(request, response);
-
 	}
-
 }

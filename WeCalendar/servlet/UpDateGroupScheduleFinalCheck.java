@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.ScheduleBeans;
-import model.WeCalendarDAO;
+import model.ScheduleDAO;
 
 /**
  * Servlet implementation class UpDateGroupScheduleFinalCheck
@@ -59,10 +59,11 @@ public class UpDateGroupScheduleFinalCheck extends HttpServlet {
 			String authority = request.getParameter("authority");
 			String createGroup = request.getParameter("creategroup");
 			String createUser = request.getParameter("createuser");
-			WeCalendarDAO wcDAO = new WeCalendarDAO();
-			wcDAO.updateScedule(id, date, startTime, endTime, attribute, place, title, content,
+
+			ScheduleDAO sDAO = new ScheduleDAO();
+			sDAO.updateScedule(id, date, startTime, endTime, attribute, place, title, content,
 								authority, createGroup, createUser);
-			sb = wcDAO.getPlanData(id);
+			sb = sDAO.getPlanData(id);
 			session.setAttribute("plandata",sb);
 
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/updateGroupScheduleCompleteResult.jsp");

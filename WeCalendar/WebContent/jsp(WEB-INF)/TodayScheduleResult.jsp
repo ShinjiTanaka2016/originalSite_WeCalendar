@@ -3,6 +3,7 @@
 <%@ include file="/userBeansInclude.jsp" %>
 <%@ include file="/groupBeansInclude.jsp" %>
 <%@ include file="/scheduleBeansInclude.jsp" %>
+<% String today = (String) session.getAttribute("today"); %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,8 +25,10 @@
 	    <%= planContent %>
 	  </div>
 	</div>
-
-	<a href="userScheduleDisplay.jsp" class="btn btn-info" style="margin:20px;"><b>戻る</b></a>
+	<form action="/WeCalendar/ScheduleOfTodayCheck" method="post">
+		<input type="hidden" name="date" value="<%= today %>">
+		<input type="submit" class="btn btn-info" value="戻る">
+	</form>
 	<jsp:include page="/footer.jsp"/>
 </body>
 </html>

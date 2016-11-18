@@ -72,13 +72,20 @@ public class UpdateGroupMenberCheck extends HttpServlet {
 			rd.forward(request, response);
 
 		}else{	//	エラー無しの場合登録
+
 			String Msg = "";
-			if( member1.length() > 0){wcDAO.addGroupMember(member1, groupId);Msg += member1 + "<br>";}
-			if( member2.length() > 0){wcDAO.addGroupMember(member2, groupId);Msg += member2 + "<br>";}
-			if( member3.length() > 0){wcDAO.addGroupMember(member3, groupId);Msg += member3 + "<br>";}
-			if( member4.length() > 0){wcDAO.addGroupMember(member4, groupId);Msg += member4 + "<br>";}
-			if( member5.length() > 0){wcDAO.addGroupMember(member5, groupId);Msg += member5 + "<br>";}
-			if( member6.length() > 0){wcDAO.addGroupMember(member6, groupId);Msg += member6 + "<br>";}
+			if( member1.length() > 0 && wcDAO.getGroupMember(member1, groupId)==false)
+				{wcDAO.addGroupMember(member1, groupId);Msg += member1 + "<br>";}
+			if( member2.length() > 0 && wcDAO.getGroupMember(member2, groupId)==false)
+				{wcDAO.addGroupMember(member2, groupId);Msg += member2 + "<br>";}
+			if( member3.length() > 0 && wcDAO.getGroupMember(member3, groupId)==false)
+				{wcDAO.addGroupMember(member3, groupId);Msg += member3 + "<br>";}
+			if( member4.length() > 0 && wcDAO.getGroupMember(member4, groupId)==false)
+				{wcDAO.addGroupMember(member4, groupId);Msg += member4 + "<br>";}
+			if( member5.length() > 0 && wcDAO.getGroupMember(member5, groupId)==false)
+				{wcDAO.addGroupMember(member5, groupId);Msg += member5 + "<br>";}
+			if( member6.length() > 0 && wcDAO.getGroupMember(member6, groupId)==false)
+				{wcDAO.addGroupMember(member6, groupId);Msg += member6 + "<br>";}
 
 			request.setAttribute("msg", Msg);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/updateGroupMemberCompleteResult.jsp");

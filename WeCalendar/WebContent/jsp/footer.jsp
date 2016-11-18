@@ -2,3 +2,4 @@
     pageEncoding="UTF-8"%>
 <hr>
 <a href="/WeCalendar/myPage.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
+&copy;Tanaka

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.WeCalendarDAO;
+import model.ScheduleDAO;
 
 /**
  * Servlet implementation class DeleteUserScheduleComplete
@@ -28,11 +28,10 @@ public class DeleteUserScheduleComplete extends HttpServlet {
 		String deleteId = request.getParameter("deleteid");
 		int id = Integer.parseInt(deleteId);
 
-		WeCalendarDAO wcDAO = new WeCalendarDAO();
-		wcDAO.deleteSchedule(id);
+		ScheduleDAO sDAO = new ScheduleDAO();
+		sDAO.deleteSchedule(id);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/deleteUserScheduleCompleteResult.jsp");
 		rd.forward(request, response);
 	}
-
 }

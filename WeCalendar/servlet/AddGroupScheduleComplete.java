@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.ScheduleBeans;
-import model.WeCalendarDAO;
+import model.ScheduleDAO;
 
 /**
  * Servlet implementation class AddGroupScheduleComplete
@@ -30,17 +30,21 @@ public class AddGroupScheduleComplete extends HttpServlet {
 
 		String date = request.getParameter("date");
 		String startTime = request.getParameter("starttime");
+		if(startTime.length()==0){startTime = null;}
 		String endTime = request.getParameter("endtime");
+		if(endTime.length()==0){endTime = null;}
 		String attribute = request.getParameter("attribute");
 		String place = request.getParameter("place");
+		if(place.length()==0){place = null;}
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		if(content.length()==0){content = null;}
 		String authority = request.getParameter("authority");
 		String createGroup = request.getParameter("creategroup");
 		String createUser = request.getParameter("createuser");
 
-		WeCalendarDAO wcDAO = new WeCalendarDAO();
-		wcDAO.setScedule(date, startTime, endTime, attribute, place, title, content,
+		ScheduleDAO sDAO = new ScheduleDAO();
+		sDAO.setScedule(date, startTime, endTime, attribute, place, title, content,
 				authority, createGroup, createUser);
 		ScheduleBeans sb = new ScheduleBeans(0,date, startTime, endTime, attribute, place, title, content,
 				authority, createGroup, createUser);

@@ -42,5 +42,4 @@ public class AddGroupScheduleCheck extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/jsp/addGroupScheduleFinalCheck.jsp");
 		rd.forward(request, response);
 	}
-
 }

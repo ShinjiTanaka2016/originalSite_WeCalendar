@@ -20,7 +20,7 @@
 	</div>
 
 	<script type="text/javascript"  src="calendarDisplay.js"></script>
-<div id="result"></div>
+	<div id="result"></div>
 
 <jsp:include page="/footer.jsp"/>
 </body>

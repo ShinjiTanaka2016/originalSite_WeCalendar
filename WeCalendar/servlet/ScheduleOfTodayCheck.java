@@ -22,16 +22,14 @@ public class ScheduleOfTodayCheck extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
 		String today = request.getParameter("date");
 
-		System.out.println(today);
-
 		session.setAttribute("today", today);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/todaysPlanDisplay.jsp");
 		rd.forward(request, response);
 	}
-
 }

@@ -17,6 +17,6 @@
 	<a href="/WeCalendar/login.jsp" class="btn btn-primary btn-sm">戻る</a>
 <!-- <jsp:include page="/footer.jsp"/> -->
 <hr>
-<a href="/WeCalendar/top.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
+<a href="/WeCalendar/index.jsp" class="btn btn-primary btn-sm">TOPへ</a><br><br>
 </body>
 </html>

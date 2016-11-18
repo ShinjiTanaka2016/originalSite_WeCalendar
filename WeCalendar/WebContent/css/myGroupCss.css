@@ -1,0 +1,27 @@
+#menu_box{
+	float:left;
+	width:500px;
+}
+#member_box{
+}
+
+table{
+	border:solid 4px;
+	margin-top:18px;
+	margin-left:40px;
+	border-radius:8px;
+	border-collapse: separate;
+	overflow: hidden;
+}
+th{
+	font-size:18px;
+	border-bottom:solid 1.5px;
+	background:#ffffc8;
+	padding:5px;
+}
+td{
+	font-size:14px;
+	border-bottom:solid 1.5px;
+	background:#fcfcfc;
+	padding:5px;
+}

@@ -58,7 +58,7 @@ public class LoginCheck extends HttpServlet {
 			gB.setGroupId("0");
 			gB.setGroupName("0");
 			gB.setGroupPass("0");
-			gB.setAdministrator("0");;
+			gB.setAdministrator("0");
 
 			HttpSession session = request.getSession();
 			session.setAttribute("lub", lUB);
@@ -66,7 +66,5 @@ public class LoginCheck extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/myPage.jsp");
 			rd.forward(request, response);
 		}
-
 	}
-
 }

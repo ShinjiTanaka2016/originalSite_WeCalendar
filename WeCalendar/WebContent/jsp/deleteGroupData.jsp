@@ -13,6 +13,7 @@
 
 <body>
 	<jsp:include page="/header.jsp"/>
+
 	<% if(gB.getGroupId().equals("0")){ %>
 		<b style="color:red;">現在ログイン中のグループはありません。</b><br>
 	<% }else if(!gB.getAdministrator().equals(lUB.getUserId())){ %>
@@ -24,6 +25,7 @@
 		</div>
 		<a href="deleteGroupDataPass.jsp" class="btn btn-danger" style="margin:20px;"><b>はい</b></a><br>
 	<% } %>
+
 	<a href="myGroupData.jsp" class="btn btn-info" style="margin:20px;"><b>戻る</b></a>
 	<jsp:include page="/footer.jsp"/>
 </body>

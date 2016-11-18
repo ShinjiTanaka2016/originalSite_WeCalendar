@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.LoginUserBeans;
 import model.ScheduleBeans;
-import model.WeCalendarDAO;
+import model.ScheduleDAO;
 
 /**
  * Servlet implementation class UpdateUserScheduleCheck
@@ -38,9 +38,9 @@ public class UpdateUserScheduleCheck extends HttpServlet {
 		String id = request.getParameter("planid");
 		int planId = Integer.parseInt(id);
 
-		WeCalendarDAO wcDAO = new WeCalendarDAO();
+		ScheduleDAO sDAO = new ScheduleDAO();
 		ScheduleBeans sb = new ScheduleBeans();
-		sb = wcDAO.getPlanData(planId);
+		sb = sDAO.getPlanData(planId);
 		String createUserId = "";
 
 		if(sb == null){

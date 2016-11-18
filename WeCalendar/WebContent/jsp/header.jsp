@@ -12,26 +12,18 @@
         <span class="icon-bar"></span>
 
       </button>
-      <a class="navbar-brand" href="/WeCalendar/Calendar.jsp"><b>カレンダー</b></a>
+      <a class="navbar-brand" href="/WeCalendar/Calendar.jsp">
+      <b style="color:white;font-size:22px;">カレンダー</b></a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li><a href="myPage.jsp"><b>マイページ</b></a></li>
-        <li><a href="myGroup.jsp"><b>マイグループ</b></a></li>
+        <li><a href="myPage.jsp"><b style="color:white;">マイページ</b></a></li>
+        <li><a href="myGroup.jsp"><b style="color:white;">マイグループ</b></a></li>
       </ul>
-<!-- ------------------------------------------------------------------
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">検索</button>
-      </form>
- ------------------------------------------------------------------------>
       <ul class="nav navbar-nav navbar-right">
-      	<li style="color:#fff;">ID:[<%= myId %>]　Name:[<%= myName %>]　
-      	Group:[<% if( gB.getGroupId()=="0"){%>nothing<% }else{ %><%= groupName %><% } %>]</li>
-        <li><a href="logOut.jsp"><b>ログアウト</b></a></li>
+      	<li style="color:#fff;">ID:[<%= myId %>]　Name:[<%= myName %>]</li>
+        <li><a href="logOut.jsp"><b style="color:white;">ログアウト</b></a></li>
       </ul>
     </div>
   </div>

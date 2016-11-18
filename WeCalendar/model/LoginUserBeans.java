@@ -21,7 +21,4 @@ public class LoginUserBeans implements Serializable{
 	public void setUserMail(String userMail) {this.userMail = userMail;}
 	public void setUserPass(String userPass) {this.userPass = userPass;}
 	public void setUsersGroup(String usersGroup) {this.usersGroup = usersGroup;}
-
-
-
 }

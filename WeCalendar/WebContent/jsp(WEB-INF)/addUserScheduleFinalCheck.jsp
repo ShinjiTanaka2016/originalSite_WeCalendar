@@ -14,7 +14,7 @@ ScheduleBeans sb = (ScheduleBeans)request.getAttribute("schedule");
 <body>
 	<jsp:include page="/header.jsp"/>
 
-	以下の情報で登録しますか？
+	<b>以下の情報で登録しますか？</b><br>
 	<table>
 	<tr><td>日付</td><td>:<%= sb.getDate() %></td><tr>
 	<tr><td>時間</td><td>:<%= sb.getStartTime() %>　～　<%= sb.getEndTime() %></td><tr>
@@ -22,7 +22,7 @@ ScheduleBeans sb = (ScheduleBeans)request.getAttribute("schedule");
 	<tr><td>場所</td><td>:<%= sb.getPlace() %></td><tr>
 	<tr><td>タイトル</td><td>:<%= sb.getTitle() %></td><tr>
 	<tr><td>内容</td><td>:<%= sb.getContent() %></td><tr>
-	</table>
+	</table><br>
 
 	<form action="/WeCalendar/AddUserScheduleComplete" method="post">
 	<input type="hidden" name="date" value="<%= sb.getDate() %>">
@@ -35,7 +35,8 @@ ScheduleBeans sb = (ScheduleBeans)request.getAttribute("schedule");
 	<input type="hidden" name="authority" value="<%= sb.getAuthority() %>">
 	<input type="hidden" name="createuser" value="<%= sb.getCreateUser() %>">
 	<input type="submit" value="スケジュール登録">
-	</form>
+	</form><br>
+
 	<a href="./addUserSchedule.jsp" class="btn btn-primary btn-sm">戻る</a>
 	<jsp:include page="/footer.jsp"/>
 </body>

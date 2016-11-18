@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import model.GroupBeans;
 import model.LoginUserBeans;
 import model.ScheduleBeans;
+import model.ScheduleDAO;
 import model.WeCalendarDAO;
 
 /**
@@ -41,8 +42,9 @@ public class UpdateGroupScheduleCheck extends HttpServlet {
 		int planId = Integer.parseInt(id);
 
 		WeCalendarDAO wcDAO = new WeCalendarDAO();
+		ScheduleDAO sDAO = new ScheduleDAO();
 		ScheduleBeans sb = new ScheduleBeans();
-		sb = wcDAO.getPlanData(planId);
+		sb = sDAO.getPlanData(planId);
 
 		//	IDチェック
 		if(sb == null){

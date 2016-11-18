@@ -17,6 +17,7 @@
 	<% }else if(!gB.getAdministrator().equals(lUB.getUserId())){ %>
 		<b style="color:red;">メンバ変更の権限がありません。</b><br>
 	<% }else{ %>
+
 		<div class="container">
 	    <form action="/WeCalendar/UpdateGroupMenberCheck" method="post" class="form-horizontal">
 	    <label>追加したいメンバーのIDを入力して下さい。</label>
@@ -46,6 +47,7 @@
 	    </form>
 		</div>
 	<% } %>
+
 	<a href="myGroupData.jsp" class="btn btn-info" ><b>戻る</b></a><br>
 	<jsp:include page="/footer.jsp"/>
 </body>
